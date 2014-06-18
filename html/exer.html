@@ -1,0 +1,105 @@
+<!Doctype html>
+<html>
+  <head>
+    <title >Html form exercise</title>
+  </head>
+  <body>
+      <div style="background-color:#E8E8E8; margin:0 auto;width:500px;">
+        <h1 align="center">HTML form exercise</h1>
+        <form action="" method="get" >
+        <b style="margin-left:5em;">Contact form</b><br/>
+        <table>
+        <tr>
+          <td>
+            <label for="n">Your name*:</label>
+          </td>
+          <td><input type="text" name="name" id="n"/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="ne">E-mail*:</label>
+          </td>
+          <td> 
+            <input type="text" name="mail-id" style="background-color:#FFFF99" id="ne"/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="ph">Phone number:</label>
+          </td>
+          <td>
+            <input type="text" name="contact" style="background-color:#FFFF99" id="ph"/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="web"> Website*:</label>
+          </td>
+          <td>
+            <input type="text" name="web" value="http://" size="25" id="web"/>
+          </td>
+        </tr>
+      </table><br/>
+      <label for="com">
+        Comments*:
+      </label><br />
+      <textarea rows=7 cols=50 id="com"></textarea><br/><br/><br/>
+      <b>Text field</b><br/>
+      <label for="yn">
+        Your name:
+      </label>
+      <input type="text" name="name_" style="background-color:#FFFF99" id="yn"/><br/><br/>
+      <b>Password field</b><br/>
+      <label for"passs">Password:</label>
+      <input type="password" name="pass" id="passs"/><br/><br/>
+      <b>Radio buttons</b><br/>
+       Do you like pizza?<br/>
+      <input type="radio" name="pizza" value="yes" checked>Yes</input><br/>
+      <input type="radio" name="pizza" value="no">No</input><br/>
+      <input type="radio" name="pizza" value="maybe">Maybe</input><br/>
+      <input type="radio" name="pizza" value="never">Never Tried</input><br/><br/>
+      <b>Check Box</b><br/>
+      <input type="checkbox" name="check" value="checking">
+        Check this box if you like our service
+      </input><br/><br/>
+      <b>Text area</b><br/>
+      Anything you would like to say?<br/>
+      <textarea rows=7 cols=50></textarea><br/><br/>
+      <b>I Like</b><br/><br/>
+      <select multiple name="type" style="height:250">
+        <option value="mushrooms">
+          mushrooms
+        </option>
+        <option value="green">
+          green peppers
+        </option>
+        <option value="onions">
+            onions
+        </option>
+        <option value="tomatoe">
+          tomatoes
+        </option>
+        <option value="olives">
+        olives
+        </option>
+      </select><br/><br/>
+      <b>Menu</b><br/>
+      Your favorite color:<br/>
+      <select namr="clr">
+        <option value="red" selected>
+          red
+        </option>
+        <option value="blue">
+           blue
+        </option>
+      </select><br/><br/>
+      <label for="ats"><b>Attach file</b></label><br/>
+      <input type="file" name="fl"> <br/><br/>
+      <b>Buttons</b><br/>
+      <input type="submit" value="Submit"/>
+      <input type="reset" value="Reset"/>
+      </form>
+    </div>
+  </body>
+</html>
