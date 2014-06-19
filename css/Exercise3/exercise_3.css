@@ -1,0 +1,97 @@
+#upper-division{
+border-bottom:2px solid #db2927;
+padding:3px;
+}
+#contact-list{
+position:absolute;
+top:59px;
+right:27;
+}
+.contact{
+padding-left:5px;
+font-family: Tahoma, Verdana, Segoe, sans-serif;
+font-size:13px;
+color:black;
+}
+.email{
+font-family: Tahoma, Verdana, Segoe, sans-serif;
+font-size:13px;
+color:#045198;
+}
+ul{
+padding-left:0;
+margin-left:0;
+}
+.genderlist,.datelist{
+display:inline;
+list-style-type:none;
+font-family: Tahoma, Verdana, Segoe, sans-serif;
+font-size:13px;
+color:#6f6f6f;
+padding-bottom:20px;
+}
+.datelist select{
+font-family: Tahoma, Verdana, Segoe, sans-serif;
+font-size:13px;
+color:#6f6f6f;
+width:110px;
+}
+#form{
+background-color:#ececec;
+border:1px solid #bcbcbc;
+width:500px !important;
+padding:20px 25px;
+margin:0 auto;
+height:246px;
+position:relative;
+top:24px;
+display:table;
+}
+#caption{
+font-family: Tahoma, Verdana, Segoe, sans-serif;
+font-size:18px;
+color:#2c286d;
+position:relative;
+left:365px;
+top:25px;
+}
+textarea{
+background-color:white;
+border:1px solid #b9b9b9;
+width:360px;
+height:135px;
+}
+#fname,#lname,#email,#passwd{
+background-color:white;
+border:1px solid #b9b9b9;
+width:360px;
+height:25px ;
+background-color:white;
+
+
+}
+#submitbutton{
+background-color:#dc2927 !important;
+border-color:#a10200 !important;
+width:130px !important;
+height:32px !important;
+text-align:center !important;
+font-family: Tahoma, Verdana, Segoe, sans-serif !important;
+font-size:14px !important;
+color:white !important;
+}
+.row{
+display:table-row;
+}
+.col{
+display:table-cell;
+padding-left:20px;
+padding-bottom:8px;
+}
+.colleft{
+display:table-cell;
+text-align:right;
+font-family: Tahoma, Verdana, Segoe, sans-serif;
+font-size:14px;
+color:black;
+}
