@@ -15,7 +15,7 @@ color:black;
 padding:15px;
 }
 .lrdivision{
-overflow:hidden;
+display: table-row;
 }
 .left-division
 {
@@ -23,10 +23,7 @@ width:230px;
 background-color:#0ab1ff;
 padding:25px 10px;
 background-image:url(exercise2-bg.gif);
-float:left;
-padding-bottom: 1000px;
-margin-bottom: -1000px;
-
+display: table-cell;
 }
 .left-heading{
 font-family: Tahoma, Verdana, Segoe, sans-serif;
@@ -58,9 +55,6 @@ background-color:#ededed;
 padding:20px;
 width:710px;
 display: table-cell;
-float: left;
-padding-bottom: 1000px;
-margin-bottom: -1000px;
 }
 .right-heading{
 font-family: Tahoma, Verdana, Segoe, sans-serif;
@@ -83,7 +77,4 @@ padding:15px;
 font-family: Tahoma, Verdana, Segoe, sans-serif;
 font-size:24px;
 color:black;
-
 }
-
-
