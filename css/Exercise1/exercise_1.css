@@ -65,11 +65,11 @@ line-height:20px;
 .sublist a:hover{
 color:#bd0707;
 }
-#subl{
+.subl{
 position:absolute;
 left:-90px;
 }
-#subl li{
+.subl li{
 font-family:Georgia;
 font-size:14px;
 padding-top:5px;
@@ -77,7 +77,7 @@ padding-bottom:5px;
 border-bottom:1px solid #cfcfcf;
 line-height:20px;
 }
-#subl a:hover{
+.subl a:hover{
 color:#bd0707;
 }
 .lastsublist{
