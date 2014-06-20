@@ -1,94 +1,80 @@
-ul{
+.mainmenu ul{
 margin:0;
 padding:0;
 float:left;
-}
-ul li{
+border-bottom: 2px solid #6d6d6d;
+text-decoration: none;
 list-style-type:none;
 }
-.mainmenu{
-font-family:Georgia;
+
+.mainmenu>ul>li{
+font-family:Georgia, serif;
 font-style:Italic;
 font-size:18px;
 list-style-type:none;
 background-color:#CFCFCF;
-padding-left:20px;
-padding-right:20px;
 margin-left:2px;
-line-height:37px;
 float:left;
 position:relative;
 }
-.mainmenu:hover{
+.mainmenu>ul li:first-child{ margin-left:0;}
+.mainmenu>ul>li:hover{
 border-top:2px solid #6d6d6d;
 border-left:2px solid #6d6d6d;
 border-right:2px solid #6d6d6d;
-border-bottom:0;
 background-color:white;
-padding-left:18px;
-padding-right:18px;
-
 }
-.mainmenu a{
+.mainmenu>ul>li>a{
 display:block;
 text-decoration:none;
 color:black;
+padding-left:20px;
+padding-right:20px;
+line-height:37px;
+
 }
-.mainmenu a:hover{
+.mainmenu>ul>li:hover>a{
+padding-left:18px;
+padding-right:18px;
+line-height: 35px;
 color:#8c8c8c;
+border-bottom: 2px solid white;
+margin-bottom: -2px;
 }
-.mainmenu ul{
+.mainmenu>ul>li ul{
 display:none;
 padding:10px;
 background-color:white;
 width:186px;
-border-bottom:2px solid #6d6d6d;
 border-left:2px solid #6d6d6d;
 border-right:2px solid #6d6d6d;
+position:absolute;
+left:-2px;
+top: 37px;
+list-style-type: none;
 }
-.mainmenu:hover ul,li{
+.mainmenu>ul>li:hover ul{
 display:block;
 float:none;
 }
-.sublist{
-position:absolute;
-left:-2px;
+.mainmenu>ul>li>ul li{
+border-top:1px solid #cfcfcf;
 }
-.sublist li{
-font-family:Georgia;
+.mainmenu>ul>li>ul li:first-child{ border-top: none;}
+.mainmenu>ul>li>ul a{
+text-decoration: none;
+font-family:Georgia, serif;
 font-size:14px;
 padding-top:5px;
 padding-bottom:5px;
-border-bottom:1px solid #cfcfcf;
-line-height:20px;
+line-height:29px;
+color: black;
 }
-.sublist a:hover{
+.mainmenu>ul>li>ul>li:hover a{
 color:#bd0707;
 }
-.subl{
-position:absolute;
-left:-90px;
-}
-.subl li{
-font-family:Georgia;
-font-size:14px;
-padding-top:5px;
-padding-bottom:5px;
-border-bottom:1px solid #cfcfcf;
-line-height:20px;
-}
-.subl a:hover{
-color:#bd0707;
-}
-.lastsublist{
-border-bottom:0 !important;
-}
-hr{
-position:fixed;
-top:37px;
-left:10px;
-width:592px;
-background-color:#6d6d6d;
-height:1px;
-z-index:-1;
+
+
+.margin{
+	margin-left: 0 !important;
 }
