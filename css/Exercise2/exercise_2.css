@@ -6,16 +6,19 @@ margin:0 auto;
 background-color:#b2e7ff;
 border-bottom:2px solid #0ab1ff;
 width:1000px;
+text-align: center;
+
 }
 .top-heading{
 font-family: Tahoma, Verdana, Segoe, sans-serif;
-text-align:center;
 font-size:24px;
 color:black;
-padding:15px;
+padding:20px;
+
 }
 .lrdivision{
-display: table-row;
+display: table;
+width: 100%;
 }
 .left-division
 {
@@ -30,7 +33,7 @@ font-family: Tahoma, Verdana, Segoe, sans-serif;
 font-size:18px;
 color:black;
 }
-.left-para{
+.left-division p{
 font-family: Tahoma, Verdana, Segoe, sans-serif;
 font-size:12px;
 color:black
@@ -61,7 +64,7 @@ font-family: Tahoma, Verdana, Segoe, sans-serif;
 font-size:24px;
 color:black;
 }
-.para-right{
+.right-division p{
 font-family: Tahoma, Verdana, Segoe, sans-serif;
 font-size:14px;
 color:#802525;
@@ -71,10 +74,10 @@ background-color:#3cff78;
 border-bottom:2px solid #0ab1ff;
 clear:both;
 text-align:center;
-padding:15px;
 }
 .bottom-heading{
 font-family: Tahoma, Verdana, Segoe, sans-serif;
 font-size:24px;
 color:black;
+padding:20px;
 }
