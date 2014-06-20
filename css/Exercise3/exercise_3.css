@@ -1,108 +1,104 @@
 .upper-division{
-border-bottom:2px solid #db2927;
-padding:3px;
-width: 100%;
-position: relative;
+  border-bottom:2px solid #db2927;
+  padding:3px;
+  width: 100%;
+  display: table;
 }
+
 .lower-division{
 	width:500px;
 	margin: 0 auto;
 	position: relative;
 }
 .contact-list{
-float: right;
-display: inline;
-position: absolute;
-bottom: 0px;
-left: 979px;
+ float: right;
+ display: inline;
+ display: table-cell;
+ text-align: right;
 }
 .contact{
-padding-left:5px;
-font-family: Tahoma, Verdana, Segoe, sans-serif;
-font-size:13px;
-color:black;
+ padding-left:5px;
+ font-family: Tahoma, Verdana, Segoe, sans-serif;
+ font-size:13px;
+ color:black;
 }
 .email{
-font-family: Tahoma, Verdana, Segoe, sans-serif;
-font-size:13px;
-color:#045198;
-text-decoration: none;
+ font-family: Tahoma, Verdana, Segoe, sans-serif;
+ font-size:13px;
+ color:#045198;
+ text-decoration: none;
 }
 ul{
-padding:0;
-margin:0;
+ padding:0;
+ margin:0;
 }
 .genderlist,.datelist{
-display:inline;
-list-style-type:none;
-font-family: Tahoma, Verdana, Segoe, sans-serif;
-font-size:13px;
-color:#6f6f6f;
-padding-bottom:20px;
+ display:inline;
+ list-style-type:none;
+ font-family: Tahoma, Verdana, Segoe, sans-serif;
+ font-size:13px;
+ color:#6f6f6f;
+ padding-bottom:20px;
 }
 .datelist select{
-font-family: Tahoma, Verdana, Segoe, sans-serif;
-font-size:13px;
-color:#6f6f6f;
-width:97px;
+ font-family: Tahoma, Verdana, Segoe, sans-serif;
+ font-size:13px;
+ color:#6f6f6f;
+ width:97px;
 }
 .form{
-background-color:#ececec;
-border:1px solid #bcbcbc;
-width:448px !important;
-padding:20px 25px;
-margin:0 auto;
-position:relative;
-top:24px;
-display:table;
+ background-color:#ececec;
+ border:1px solid #bcbcbc;
+ width:448px !important;
+ padding:20px 25px;
+ margin:0 auto;
+ display:table;
 }
 .caption{
-font-family: Tahoma, Verdana, Segoe, sans-serif;
-font-size:18px;
-color:#2c286d;
-position: absolute;
-top: 20px;
+ font-family: Tahoma, Verdana, Segoe, sans-serif;
+ font-size:18px;
+ color:#2c286d;
+ padding-top: 20px;
 }
 textarea{
-background-color:white;
-border:1px solid #b9b9b9;
-width:318px;
-height:133px;
+ background-color:white;
+ border:1px solid #b9b9b9;
+ width:318px;
+ height:133px;
 }
-#fname,#lname,#email,#passwd{
-background-color:white;
-border:1px solid #b9b9b9;
-width:318px;
-height:23px ;
-background-color:white;
-
-
+.input{
+ background-color:white;
+ border:1px solid #b9b9b9;
+ width:318px;
+ height:23px ;
+ background-color:white;
 }
 .submitbutton{
-background-color:#dc2927 !important;
-border-color:1px solid #a10200 !important;
-width:130px !important;
-height:32px !important;
-text-align:center !important;
-font-family: Tahoma, Verdana, Segoe, sans-serif !important;
-font-size:14px !important;
-color:white !important;
+ background-color:#dc2927 ;
+ border:1px solid #a10200 ;
+ width:130px;
+ height:32px ;
+ text-align:center ;
+ font-family: Tahoma, Verdana, Segoe, sans-serif ;
+ font-size:14px ;
+ color:white ;
 }
 .row{
-display:table-row;
+ display:table-row;
 }
 .col{
-display:table-cell;
-padding-left:20px;
-padding-bottom:8px;
+ display:table-cell;
+ padding-left:20px;
+ padding-bottom:8px;
 }
 .colleft{
-display:table-cell;
-text-align:right;
-font-family: Tahoma, Verdana, Segoe, sans-serif;
-font-size:14px;
-color:black;
+ display:table-cell;
+ text-align:right;
+ font-family: Tahoma, Verdana, Segoe, sans-serif;
+ font-size:14px;
+ color:black;
 }
 .logo{
-vertical-align: bottom;
+ display:table-cell;
+ text-align: left;
 }
