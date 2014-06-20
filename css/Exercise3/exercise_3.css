@@ -91,6 +91,10 @@ textarea{
  padding-left:20px;
  padding-bottom:8px;
 }
+.vtop{
+
+	vertical-align: top;
+}
 .colleft{
  display:table-cell;
  text-align:right;
@@ -101,4 +105,9 @@ textarea{
 .logo{
  display:table-cell;
  text-align: left;
+}
+
+.add{
+
+	vertical-align: top;
 }
