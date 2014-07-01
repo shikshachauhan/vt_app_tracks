@@ -20,4 +20,3 @@ class Customer
       @balance
     end
 end
-puts Customer.new('wegfrt',234567).withdrawal(345)
