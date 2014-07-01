@@ -1,3 +1,5 @@
 require_relative "../lib/array.rb"
 
-puts Array.new.power(6)
+array = [9, 2, 3]
+array.power(6)
+puts array

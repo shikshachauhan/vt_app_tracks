@@ -1,9 +1,7 @@
 class Array
-  def power(x)
-    array=[1, 2, 3, 4, 5]
-    for i in (1...array.length) do
-      array[i]=array[i]**x
+  def power(exponent)
+    for i in (0...length) do
+      self[i] = self[i] ** exponent
     end 
-    array
   end
 end
