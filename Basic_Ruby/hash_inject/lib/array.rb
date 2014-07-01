@@ -1,22 +1,22 @@
 class Array
-	def array_hash
-		hash = Hash.new
-		for val in self
-			l = val.to_s.length
-			if(hash.has_key? ( l ))
-				hash[l] << val 
-			else
-				hash[l] = Array.new << val 
-			end
-		end
-		memo_type = Hash.new { |hash, key| hash[key] = [] }
-		hash.inject(memo_type) do |memo,(key,value)|
-			if(key.odd?)
-					memo["odd"]<<value
-			else
-					memo["even"]<<value
-			end
+
+	def with_key_as_size
+    size_key_hash = Hash.new { |hash, key| hash[key] = [] }
+    
+    self.each do |val|
+      size_key_hash[val.to_s.length] << val
+    end
+    
+    size_key_hash
+  end
+
+  def odd_even_segregation
+
+		with_key_as_size.inject(Hash.new { |hash, key| hash[key] = [] } ) do |memo, (key, value)|
+		  key.odd? ? memo["odd"] << value : memo["even"] << value
 			memo
-	    end
+		end
+
 	end
+
 end
