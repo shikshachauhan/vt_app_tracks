@@ -3,4 +3,3 @@ class String
     swapcase
   end
 end
-    
