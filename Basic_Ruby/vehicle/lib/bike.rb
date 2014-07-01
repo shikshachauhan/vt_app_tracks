@@ -11,5 +11,5 @@ class Bike < Vehicle
   def to_s
     "\tName : #{name}\n\tPrice : #{price}\n\tDealer : #{dealer}\n  "
   end
-
+  
 end
