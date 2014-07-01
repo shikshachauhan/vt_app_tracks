@@ -6,7 +6,7 @@ class Customer
       @name = name
       @account_no = @@account_num
       @@account_num = @@account_num + 1
-      @balance = 1000
+      @balance = balance
     end
 
     def deposite(amount)
@@ -14,12 +14,10 @@ class Customer
     end
 
     def withdrawal(amount)
-      if amount <= balance
+      if amount <= @balance
         @balance -= amount
-        "withdrawal successful"
-      else
-        "Insufficient balance"
       end
-
+      @balance
     end
 end
+puts Customer.new('wegfrt',234567).withdrawal(345)
