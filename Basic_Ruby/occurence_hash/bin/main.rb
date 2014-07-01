@@ -1,4 +1,3 @@
-require_relative '../lib/occurence_hash.rb'
+require_relative '../lib/string.rb'
 
-check_occur = Hash.new
-puts check_occur.count_occurence(gets.chomp)
+puts gets.chomp.count_occurence
