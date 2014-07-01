@@ -1,18 +1,16 @@
 class Array
 
-	def with_key_as_size
-    size_key_hash = Hash.new { |hash, key| hash[key] = [] }
-    
-    self.each do |val|
-      size_key_hash[val.to_s.length] << val
+	def group_by_size
+    size_array_pair = Hash.new { |hash, key| hash[key] = [] }
+    each do |val|
+      size_array_pair[val.to_s.length] << val
     end
-    
-    size_key_hash
+    size_array_pair
   end
 
   def odd_even_segregation
 
-		with_key_as_size.inject(Hash.new { |hash, key| hash[key] = [] } ) do |memo, (key, value)|
+		group_by_size.inject(Hash.new { |hash, key| hash[key] = [] } ) do |memo, (key, value)|
 		  key.odd? ? memo["odd"] << value : memo["even"] << value
 			memo
 		end
