@@ -7,7 +7,7 @@ class String
         temp_hash['upper_case'] += 1
       when ('a'..'z')
         temp_hash['lower_case'] += 1
-      when (0..9)
+      when ('0'..'9')
         temp_hash['digit'] += 1
       else
         temp_hash['special_hash'] += 1
