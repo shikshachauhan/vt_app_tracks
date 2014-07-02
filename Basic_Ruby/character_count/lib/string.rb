@@ -10,7 +10,7 @@ class String
       when ('0'..'9')
         temp_hash['digit'] += 1
       else
-        temp_hash['special_hash'] += 1
+        temp_hash['special_character'] += 1
       end
     end
     temp_hash
