@@ -1,10 +1,9 @@
 class Array
-  def group_by_size
-    size_array_pair = Hash.new { |hash, key| hash[key] = [] }
+  def group_by_length
+    temporary_hash = Hash.new { |hash, key| hash[key] = [] }
     each do |val|
-      size_array_pair[val.to_s.length] << val
+      temporary_hash[val.to_s.length] << val
     end
-    size_array_pair
+    temporary_hash
   end
 end
- 
