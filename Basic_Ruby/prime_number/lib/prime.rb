@@ -5,11 +5,11 @@ class Prime
     primes = []
 
     1.step(num, 2) do |var|
-        if Prime.prime?(var)
+        if prime?(var)
           primes << var
         end
     end
-    
+
     primes
   end
 end
