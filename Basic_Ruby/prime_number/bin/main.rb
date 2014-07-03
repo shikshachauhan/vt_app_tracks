@@ -1,3 +1,3 @@
 require_relative '../lib/prime.rb'
 
-puts Prime.find_primes(100)
+puts 1.find_primes_upto(100)
