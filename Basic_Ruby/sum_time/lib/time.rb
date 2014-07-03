@@ -1,5 +1,4 @@
-class Date
-
+class Time
   def normalize val
     val = val.to_s
     if(val.length == 1)
@@ -8,22 +7,22 @@ class Date
     val
   end
 
-  def to_string(hour, minute, second, date)
+  def to_string(hour, minute, second, time)
     hour = normalize(hour)
     minute = normalize(minute)
     second = normalize(second)
 
-    date << "#{hour}:#{minute}:#{second}"
+    time << "#{hour}:#{minute}:#{second}"
   end
 
-  def add_date(date1, date2)
+  def add_time(time1, time2)
 
-    return 'invalid date' if /^(\d\d?):(\d\d):(\d\d)$/ !~ date1
+    return 'invalid time' if /^(\d\d?):(\d\d):(\d\d)$/ !~ time1
     hour1 = $1.to_i
     minute1 = $2.to_i
     second1 = $3.to_i
 
-    return 'invalid date' if /^(\d\d?):(\d\d):(\d\d)$/ !~ date2
+    return 'invalid time' if /^(\d\d?):(\d\d):(\d\d)$/ !~ time2
     hour2 = $1.to_i
     minute2 = $2.to_i
     second2 = $3.to_i
@@ -42,14 +41,14 @@ class Date
       hour += 1
     end
 
-    date = ""
+    time = ""
 
     if hour > 24
       hour -= 24
-      date << '1 day & '
+      time << '1 day & '
     end
 
-    to_string(hour, minute, second, date)
+    to_string(hour, minute, second, time)
 
   end
 
