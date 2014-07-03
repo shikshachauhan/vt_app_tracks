@@ -1,6 +1,6 @@
 class String
+  Vowel_pattern = /[aeiou]/i
   def vowel_by_star
-    vowel_pattern = /[aeiou]/i
-    gsub(vowel_pattern, '*')
+    gsub(Vowel_pattern, '*')
   end
 end
