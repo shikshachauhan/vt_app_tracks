@@ -1,3 +1,4 @@
 require_relative '../lib/factorial.rb'
 
-puts Factorial.new.find_factorial(0)
+num = gets.chomp.to_i
+puts num.find_factorial
