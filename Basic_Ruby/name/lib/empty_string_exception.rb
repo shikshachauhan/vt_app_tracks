@@ -1,3 +1,2 @@
 class EmptyStringException < RuntimeError
-
 end
