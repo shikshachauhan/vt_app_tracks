@@ -1,0 +1,2 @@
+class IncorrectCaseException < RuntimeError
+end
