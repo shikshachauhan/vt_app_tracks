@@ -1,18 +1,24 @@
 class Interest
 
-  Rate = 0.1
+  RATE = 0.1
   attr_accessor :principal, :time
 
-  def simple_interest
-    principal + principal * Rate * time
+  def initialize
+    instance_variables = yield
+    @principal = instance_variables[0]
+    @time = instance_variables[1]
   end
 
-  def compound_interest
-    principal * ((1 + Rate) ** time) 
+  def simple_amount
+    principal + principal * RATE * time
+  end
+
+  def compound_amount
+    principal * ((1 + RATE) ** time) 
   end
 
   def simple_compound_difference
-    compound_interest - simple_interest
+    compound_amount - simple_amount
   end
-  
+
 end
