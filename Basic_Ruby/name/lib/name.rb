@@ -4,7 +4,7 @@ require_relative 'empty_string_exception.rb'
 class Name
 
   def check_validity(first_name, last_name)
-    raise EmptyStringException.new if(first_name.length == 0 || last_name.length == 0)
+    raise EmptyStringException.new if(first_name.empty?|| last_name.empty?)
     raise IncorrectCaseException.new if(first_name[0] != first_name[0].upcase)
   end
 
