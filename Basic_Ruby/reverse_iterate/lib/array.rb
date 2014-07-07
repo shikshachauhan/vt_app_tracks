@@ -1,5 +1,9 @@
 class Array
   def reverse_iterate
-    yield reverse.join(' ')
+    index = self.length - 1
+    while(index > -1)
+      yield self[index]
+      index -= 1
+    end
   end
 end
