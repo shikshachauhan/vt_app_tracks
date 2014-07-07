@@ -2,25 +2,22 @@ require 'csv'
 
 class FormatConverter
 
-  def read(path)
-    @arr_developer = []
-    @arr_designer = []
-    @arr_tester = []
-    CSV.foreach(path, { headers: true } ) do |row|
-      @arr_developer.push("#{row[0]}(EmpId:#{row[1]})") if (row[2] == " Developer")
-      @arr_designer.push("#{row[0]}(EmpId:#{row[1]})") if (row[2] == " Designer")
-      @arr_tester.push("#{row[0]}(EmpId:#{row[1]})") if (row[2] == " Tester")
+  BASE_PATH = "../data"
+  def read(input_file)
+    @employee_datails = Hash.new { |hash, key| hash[key] = Array.new }
+    CSV.foreach("#{BASE_PATH}/#{input_file}", { headers: true } ) do |row|
+      @employee_datails[row[2].strip].push("#{row[0]}(EmpId:#{row[1].strip})") 
     end
   end
 
-  def write(path)
-    File.open(path, "w+") do |file|
-      file.puts 'Designers'
-      file.puts @arr_designer
-      file.puts "\nDevelopers"
-      file.puts @arr_developer
-      file.puts "\nTester"
-      file.puts @arr_tester
+  def write(output_file)
+    File.open("#{BASE_PATH}/#{output_file}", "w+") do |file|
+      @employee_datails.each do |key, array|
+        file.puts
+        key = key + 's' if(array.length > 1)
+        file.puts "#{key}"
+        file.puts array
+      end
     end
   end
 end
