@@ -1,0 +1,2 @@
+class NegativeFactorialException < RuntimeError
+end
