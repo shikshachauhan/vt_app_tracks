@@ -9,8 +9,12 @@ class Interest
     @time = instance_variables['time']
   end
 
+  def simple_interest
+    principal * RATE * time
+  end
+
   def amount_simply
-    principal + principal * RATE * time
+    principal + simple_interest
   end
 
   def amount_compoundedly
