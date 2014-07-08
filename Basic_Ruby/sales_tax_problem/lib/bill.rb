@@ -2,15 +2,16 @@ require_relative 'product.rb'
 
 class Bill
 
+  def initialize
+    @cart = []
+  end
   def generate_bill
-    create_bill
+    build_bill
     calculate_bill
     print_bill
   end
 
-  def create_bill
-    @cart = []
-
+  def build_bill
     begin
       product = Product.new
       #take input
@@ -22,8 +23,6 @@ class Bill
       product.exempted = gets.chomp.to_i
       print 'Price: '
       product.price = gets.chomp.to_i
-      product.set_sales_tax
-      product.set_import_duty
       @cart.push(product)
 
       print 'Do you want to add more items to your list(y/n): '
