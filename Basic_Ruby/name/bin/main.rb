@@ -1,4 +1,3 @@
-require '../lib/name.rb'
+require_relative '../lib/name.rb'
 
-Name.new('sdf', '')
-Name.new('abk', 'dcfvgb')
+Name.new(nil,'gfhjk')

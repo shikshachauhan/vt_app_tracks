@@ -1,2 +1,2 @@
-class EmptyStringException < RuntimeError
+class EmptyString < StandardError
 end

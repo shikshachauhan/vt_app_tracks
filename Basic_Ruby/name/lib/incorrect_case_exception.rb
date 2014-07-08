@@ -1,2 +1,2 @@
-class IncorrectCaseException < RuntimeError
+class IncorrectCase < StandardError
 end

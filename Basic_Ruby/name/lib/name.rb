@@ -4,8 +4,9 @@ require_relative 'empty_string_exception.rb'
 class Name
 
   def check_validity(first_name, last_name)
-    raise EmptyStringException.new if(first_name.empty?|| last_name.empty?)
-    raise IncorrectCaseException.new if(first_name[0] != first_name[0].upcase)
+    raise EmptyString, 'First Name is not provided', caller if(first_name.nil? || first_name.empty?)
+    raise EmptyString, 'Last Name is not provided', caller if(last_name.empty? || last_name.nil?)
+    raise IncorrectCase, 'First letter of first name not capital', caller if(first_name[0] != first_name[0].upcase)
   end
 
   def initialize(first_name, last_name)
@@ -13,10 +14,6 @@ class Name
       check_validity(first_name, last_name)
       @first_name = first_name
       @last_name = last_name
-    rescue IncorrectCaseException
-      puts "Invalid input : \n\tFirst character of First Name must be capital"
-    rescue EmptyStringException => detail
-      puts "Can't initialize : \n\tBoth your First Name and last name must be provided"
     end
   end
 
