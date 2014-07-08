@@ -1,4 +1,5 @@
 require_relative '../lib/time_summation.rb'
+require_relative '../lib/pluralize.rb'
 
 time1 = TimeSummation.new('2:23:07')
 time2 = TimeSummation.new('23:53:45')
@@ -17,7 +18,7 @@ if(time1.valid? && time2.valid? && time3.valid? && time4.valid? && time5.valid? 
   if(sum_time.days == 0)
     print("%02d:%02d:%02d" %[sum_time.hour, sum_time.minute, sum_time.second])
   else
-    print("#{sum_time.days} day & %02d:%02d:%02d" %[sum_time.hour, sum_time.minute, sum_time.second])
+    print("#{sum_time.days} #{ Pluralize.new.pluralize('day', sum_time.days) } & %02d:%02d:%02d" %[sum_time.hour, sum_time.minute, sum_time.second])
   end
 
 else
