@@ -4,25 +4,25 @@ class Interest
   attr_reader :principal, :time
 
   def initialize
-    instance_variables = yield
-    @principal = instance_variables['principal']
-    @time = instance_variables['time']
+    details = yield
+    @principal = details[:principal]
+    @time = details[:time]
   end
 
   def simple_interest
     principal * RATE * time
   end
 
-  def amount_simply
+  def simple_amount
     principal + simple_interest
   end
 
-  def amount_compoundedly
+  def compound_amount
     principal * ((1 + RATE) ** time)
   end
 
   def simple_compound_difference
-    amount_compoundedly - amount_simply
+    compound_amount - simple_amount
   end
 
 end

@@ -1,9 +1,8 @@
 require_relative '../lib/interest.rb'
 
-interest_details = Hash.new
-interest_details['principal'] = gets.chomp.to_i
-interest_details['time'] = gets.chomp.to_i
+principal = gets.chomp.to_i
+time = gets.chomp.to_i
 
-interest = Interest.new { interest_details }
+interest = Interest.new { { principal: principal, time: time } }
 
 puts interest.simple_compound_difference
