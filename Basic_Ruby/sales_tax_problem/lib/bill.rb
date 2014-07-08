@@ -9,52 +9,53 @@ class Bill
   end
 
   def create_bill
-    @commodity_details = []
-    i = -1
+    @cart = []
 
     begin
-      i += 1
-      @commodity_details.push(Product.new)
+      product = Product.new
       #take input
       print 'Name of the product: '
-      @commodity_details[i].name = gets.chomp
-      print 'Imported?: '
-      @commodity_details[i].imported = gets.chomp
-      print 'Exempted from sales tax? '
-      @commodity_details[i].exempted = gets.chomp
+      product.name = gets.chomp
+      print 'Imported?: (1/0)'
+      product.imported = gets.chomp.to_i
+      print 'Exempted from sales tax?: (1/0) '
+      product.exempted = gets.chomp.to_i
       print 'Price: '
-      @commodity_details[i].price = gets.chomp
+      product.price = gets.chomp.to_i
+      product.set_sales_tax
+      product.set_import_duty
+      @cart.push(product)
+
       print 'Do you want to add more items to your list(y/n): '
     end while(gets.chomp == 'y')
   end
 
   def calculate_bill
     @sales_tax = 0
+    @import_duty = 0
     @total = 0
 
-    @commodity_details.each do |product|
-      if(product.imported == "yes" && product.exempted == "yes")
-        rate = 0.05
-      elsif(product.imported == "yes" && product.exempted == 'no')
-        rate = 0.15
-      elsif(product.imported == 'no' && product.exempted == 'yes')
-        rate = 0
-      else
-        rate = 0.1
-      end
-      @sales_tax += product.price.to_i * rate
-      @total += product.price.to_i
+    @cart.each do |product|  
+      @sales_tax += product.sales_tax
+      @import_duty += product.import_duty
+      @total += product.price
     end
-    @total_bill = @sales_tax + @total
+    @total_bill = @sales_tax + @import_duty + @total
   end
 
   def print_bill
-    puts '***********Your Bill***********'
-    @commodity_details.each { |product| puts "#{ product.name }__________$#{ product.price }" }
-    puts '*******************************'
+    puts "\n***********Your Bill***********"
+    puts "product, price, sales-tax, import-duty"
+    @cart.each do |product|
+      puts "#{ product.name }, $#{ product.price }, $#{ product.sales_tax }, $#{ product.import_duty }"
+    end
+    puts "\n*******************************"
     puts "Total __________$#{ @total }"
     puts "sales tax __________$#{ @sales_tax }"
+    puts "import duty __________$#{ @import_duty }"
+    puts "\n***********Your Bill***********"
     puts "Amount to be paid is $#{ @total_bill.round }"
+    puts 'Thankyou for shopping with us :)'
   end
 
 end
