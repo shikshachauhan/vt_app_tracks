@@ -1,10 +1,8 @@
 require 'time'
 
 class SumTime
-
   TIME_PATTERN = /^(\d\d?):(\d\d):(\d\d)$/
   def add_time(time1, time2)
-
     begin
       TIME_PATTERN =~ time1
       time1 = Time.parse("#{$1.to_i}:#{$2.to_i}:#{$3.to_i}")
