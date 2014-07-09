@@ -5,10 +5,10 @@ class SumTime
   def add_time(time1, time2)
     begin
       TIME_PATTERN =~ time1
-      time1 = Time.parse("#{ $1.to_i }:#{ $2.to_i }:#{ $3.to_i }")
+      time1 = Time.parse("#{ $1 }:#{ $2 }:#{ $3 }")
 
       TIME_PATTERN =~ time2
-      time2 = Time.parse("#{ $1.to_i }:#{ $2.to_i }:#{ $3.to_i }")
+      time2 = Time.parse("#{ $1 }:#{ $2 }:#{ $3 }")
 
       time = time1 + time2.sec + time2.min * 60 + time2.hour * 60 * 60
 
