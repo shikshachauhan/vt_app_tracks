@@ -1,10 +1,6 @@
 class String
-
   def highlight_word(word)
-    word_regex = /(#{word})/i
-    high_lighted_text = gsub(word_regex, '(\1)')
-    word_count = scan(word_regex).length
-    "#{high_lighted_text}\nTotal Occurences found: #{word_count}\n "
+    search_pattern = /(#{word})/i
+    "#{ gsub(search_pattern, '(\1)') }\nTotal Occurences found: #{ scan(search_pattern).length }\n "
   end
-
 end
