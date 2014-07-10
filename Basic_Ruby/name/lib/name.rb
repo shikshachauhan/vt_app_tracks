@@ -8,7 +8,7 @@ class Name
     raise EmptyString, 'Last Name is not provided' if(blank?(last_name))
     raise IncorrectCase, 'First letter of first name not capital' if(first_name[0] != first_name[0].upcase)
   end
-  
+
   def blank?(field)
     field.nil? || field.empty?
   end
