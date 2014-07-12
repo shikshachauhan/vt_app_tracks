@@ -1,3 +1,3 @@
-require_relative '../lib/sum_time.rb'
+require_relative '../lib/time.rb'
 
-puts TimeSum.validate_and_display('2:22:32', '22:22:22')
+puts Time.sum('2:22:32', '22:22:2')
