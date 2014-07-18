@@ -6,11 +6,12 @@ Checkbox.prototype.mark = function(value) {
     checkBox[i].checked = value;
   }
 }
-window.onload = function() {
-  document.getElementById('check').onclick = function() {
+Checkbox.prototype.addEventHandler = function() {
+  window.document.getElementById('check').onclick = function() {
     Checkbox.prototype.mark(true);
   }
-  document.getElementById('uncheck').onclick = function() {
+  window.document.getElementById('uncheck').onclick = function() {
     Checkbox.prototype.mark(false);
   }
 }
+window.onload = Checkbox.prototype.addEventHandler;
