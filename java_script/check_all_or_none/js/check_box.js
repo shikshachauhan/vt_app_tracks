@@ -7,10 +7,10 @@ Checkbox.prototype.mark = function(value) {
   }
 }
 Checkbox.prototype.addEventHandler = function() {
-  window.document.getElementById('check').onclick = function() {
+  document.getElementById('check').onclick = function() {
     Checkbox.prototype.mark(true);
   }
-  window.document.getElementById('uncheck').onclick = function() {
+  document.getElementById('uncheck').onclick = function() {
     Checkbox.prototype.mark(false);
   }
 }
