@@ -6,7 +6,7 @@ class Time
   attr_accessor :days
 
   def to_s
-    @days ? strftime("#{ @days } #{ Pluralize.word('day', @days) } & %T") : strftime('%T')
+    @days > 0 ? strftime("#{ @days } #{ Pluralize.word('day', @days) } & %T") : strftime('%T')
   end
   def self.valid?(time_str)
     PATTERN =~ time_str
