@@ -1,7 +1,7 @@
 function Checkbox() {
 }
 Checkbox.prototype.mark = function(value) {
-  var checkBox = document.getElementsByClassName('checkbox');
+  var checkBox = document.getElementsByName('color');
   for(var i = 0; i < checkBox.length; i++) {
     checkBox[i].checked = value;
   }
