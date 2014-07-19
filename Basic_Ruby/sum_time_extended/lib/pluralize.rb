@@ -1,5 +1,5 @@
 class Pluralize
-  def pluralize(string, count)
-    (count > 1) ? string + 's' : string
+  def self.word(str, count)
+    (count > 1) ? str + 's' : str
   end
 end

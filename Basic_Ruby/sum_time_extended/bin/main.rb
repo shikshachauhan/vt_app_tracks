@@ -1,4 +1,3 @@
-require_relative '../lib/sum_time.rb'
-require_relative '../lib/pluralize.rb'
+require_relative '../lib/time.rb'
 
-puts SumTime.new.add_time('22:22:22', '22:22:22', '22:22:22')
+puts Time.sum('10:22:22', '10:22:22', '10:22:22')
