@@ -16,7 +16,7 @@ class Time
   def self.sum(time_str1, time_str2)
     time1 = try_convert(time_str1)
     time2 = try_convert(time_str2)
-    return 'invalid input' if(time1.nil? || time2.nil?)
+    return 'invalid input' if(time1 || time2)
     time3 = time1 + time2.sec + time2.min * 60 + time2.hour * 60 * 60
     time3.days = time3.day != time1.day
     time3
