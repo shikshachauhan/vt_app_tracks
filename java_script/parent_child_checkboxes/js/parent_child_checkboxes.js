@@ -1,43 +1,36 @@
-var Checkbox = {
+var catalog = {
   parent : document.getElementsByClassName('parent')
 }
-Checkbox.toggleChildDisplay = function() {
+catalog.toggleChildDisplay = function() {
   var child = document.getElementsByClassName(this.id)[0];
   if(child.style.display == 'block') {
-    child.style.display = 'none';
-  }
-  else {
-    child.style.display = 'block';
+    child.style.display = 'none' ;
+  } else {
+    child.style.display = 'block' ;
     this.scrollIntoView();
   }
 }
-Checkbox.toggleChildState = function() {
+catalog.toggleChildState = function() {
   var child = document.getElementsByName(this.id);
-  if(this.checked) {
-    var value = true;
-  }
-  else {
-    var value = false;
-  }
-  for(var i = 0; i < child.length;i++) {
-      child[i].checked = value;
+  for(var i = 0; i < child.length; i++) {
+    child[i].checked = this.checked ;
   }
 }
-Checkbox.setChildDisplay = function() {
-  for(var i = 0; i < Checkbox.parent.length; i++) {
+catalog.setChildDisplay = function() {
+  for(var i = 0; i < catalog.parent.length; i++) {
     document.getElementsByClassName
-    (Checkbox.parent[i].id)[0].style.display = 'none';
+    (catalog.parent[i].id)[0].style.display = 'none';
   }
 }
-Checkbox.bindEvents = function() {
-  for(var i = 0; i < Checkbox.parent.length; i++) {
-    Checkbox.parent[i].addEventListener
-    ('change', Checkbox.toggleChildDisplay, false);
-    Checkbox.parent[i].addEventListener
-    ('change', Checkbox.toggleChildState, false);
+catalog.bindEvents = function() {
+  for(var i = 0; i < catalog.parent.length; i++) {
+    catalog.parent[i].addEventListener
+    ('change', catalog.toggleChildDisplay, false);
+    catalog.parent[i].addEventListener
+    ('change', catalog.toggleChildState, false);
   }
 }
 window.onload = function() {
-  Checkbox.bindEvents();
-  Checkbox.setChildDisplay();
+  catalog.bindEvents();
+  catalog.setChildDisplay();
 }
