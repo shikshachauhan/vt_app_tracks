@@ -22,8 +22,8 @@ Name.prototype.notifyName = function() {
   }
 }
 window.onload = function() {
-  var firstName = prompt("Please enter first your name");
-  var lastName = prompt("Please enter last your name");
+  var firstName = prompt('Please enter first your name');
+  var lastName = prompt('Please enter last your name');
   user = new Name(firstName, lastName);
   user.notifyName();
 }
