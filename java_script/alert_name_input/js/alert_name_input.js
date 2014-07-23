@@ -9,11 +9,11 @@ Name.prototype.writeName = function() {
 Name.prototype.alertName = function() {
   alert(this.nameString);
 }
-Name.prototype.valid = function(firstName, lastName) {
+Name.prototype.isValid = function(firstName, lastName) {
   return firstName && lastName && firstName.trim() && lastName.trim();
 }
 Name.prototype.notifyName = function() {
-  if(this.valid(this.firstName, this.lastName)) {
+  if(this.isValid(this.firstName, this.lastName)) {
     this.alertName();
     this.writeName();
   }
