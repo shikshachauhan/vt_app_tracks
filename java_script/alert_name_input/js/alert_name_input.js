@@ -10,7 +10,7 @@ Name.prototype.alertName = function() {
   alert(this.nameString);
 }
 Name.prototype.isValid = function() {
-  return this.firstName && this.lastName && this.firstName.trim() && this.lastName.trim();
+  return this.firstName.trim() && this.lastName.trim();
 }
 Name.prototype.notifyName = function() {
   if(this.isValid()) {
@@ -23,7 +23,11 @@ Name.prototype.notifyName = function() {
 }
 window.onload = function() {
   var firstName = prompt('Please enter first your name');
-  var lastName = prompt('Please enter last your name');
-  user = new Name(firstName, lastName);
-  user.notifyName();
+  if(firstName) {
+    var lastName = prompt('Please enter last your name');
+    if(lastName) {
+      user = new Name(firstName, lastName);
+      user.notifyName();
+    }
+  }
 }
