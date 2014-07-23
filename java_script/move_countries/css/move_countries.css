@@ -1,0 +1,17 @@
+input{
+  color: white;
+  background-color: orange;
+  border-radius: 10px;
+  width: 80px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+div{
+  display: inline-block;
+  position: relative;
+  bottom: 10px;
+}
+select{
+  width: 150px;
+  height: 80px;
+}
