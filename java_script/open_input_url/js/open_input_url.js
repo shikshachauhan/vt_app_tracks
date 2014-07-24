@@ -1,8 +1,10 @@
 function Window(url) {
   this.url = url;
 }
+Window.prototype.urlPattern =
+/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)\/?$/i ;
 Window.prototype.isValid = function(url) {
-  return url && url.trim();
+  return Boolean(url && this.urlPattern.test(url.trim()));
 }
 Window.prototype.tryOpen = function(url) {
   if(this.isValid(url)) {
