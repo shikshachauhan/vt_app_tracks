@@ -1,18 +1,20 @@
 function Name(firstName, lastName) {
   this.firstName = firstName;
   this.lastName = lastName;
-  this.nameString = 'Hello ' + this.firstName + ' ' + this.lastName ;
+}
+Name.prototype.getName = function() {
+  return 'Hello ' + this.firstName + ' ' + this.lastName ;
 }
 Name.prototype.writeName = function() {
-  document.body.innerHTML = this.nameString;
+  document.body.innerText = this.getName();
 }
 Name.prototype.alertName = function() {
-  alert(this.nameString);
+  alert(this.getName());
 }
 Name.prototype.isValid = function() {
   return this.firstName.trim() && this.lastName.trim();
 }
-Name.prototype.notifyName = function() {
+Name.prototype.displayName = function() {
   if(this.isValid()) {
     this.alertName();
     this.writeName();
@@ -22,12 +24,12 @@ Name.prototype.notifyName = function() {
   }
 }
 window.onload = function() {
-  var firstName = prompt('Please enter first your name');
+  var firstName = prompt('Please enter your first name');
   if(firstName) {
-    var lastName = prompt('Please enter last your name');
+    var lastName = prompt('Please enter your last name');
     if(lastName) {
-      user = new Name(firstName, lastName);
-      user.notifyName();
+      var user = new Name(firstName, lastName);
+      user.displayName();
     }
   }
 }
