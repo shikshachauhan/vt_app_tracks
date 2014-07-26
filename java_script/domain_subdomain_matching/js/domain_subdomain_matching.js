@@ -1,6 +1,6 @@
 var domain = {};
-domain.urlPattern =
-  /^(https?:\/\/)?(www.)?([\w\d][\w\.\d-]*\.)?([\w\d-]+\.[\w]+)/ ;
+domain.urlPattern = /^(https?:\/\/)?(www.)?([\w\d][\w\.\d-_]*\.)?([\w\d-]+\.[\w]+)(\/[\w\d-_\.]+)*(\?([\w\d_]+=[\w\d_\+]+)(&[\w\d_]+=[\w\d_\+]+)*)?(#[\w\d_]+)?$/i ;
+
 domain.isValid = function(url) {
   return Boolean(url && domain.urlPattern.test(url.trim()));
 }
@@ -15,7 +15,7 @@ domain.displayDetails = function() {
   alert(urlDetails);
 }
 domain.getDetails = function() {
-  var url = document.getElementById('url').value,
+  var url = document.getElementById('url').value;
   if(domain.isValid(url)) {
     domain.displayDetails();
   } else {
