@@ -25,7 +25,7 @@ form{
 .column_left{
   display: table-cell;
 }
-.column_right{
+.text_fields{
   display: table-cell;
   margin-left: 70px;
 }
