@@ -1,4 +1,4 @@
-function RegistrationForm(form, confirm, aboutMe, textFields, emai, homepage) {
+function RegistrationForm(form, confirm, aboutMe, textFields, email, homepage) {
   this.form = form;
   this.confirm = confirm;
   this.aboutMe = aboutMe;
