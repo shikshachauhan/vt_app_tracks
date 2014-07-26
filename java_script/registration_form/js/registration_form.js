@@ -14,7 +14,6 @@ RegistrationForm.prototype.checkEmpty = function(event) {
   event.preventDefault();
   for(var i in this.textFields) {
     if(!this.textFields[i].value) {
-      console.log(this.textFields[i].dataset.reference)
       alert(document.getElementsByClassName
         (this.textFields[i].dataset.reference)[0].innerText + ' can not be empty.');
     }
