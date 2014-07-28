@@ -1,7 +1,7 @@
 function Window(url) {
   this.url = url;
 }
-Window.prototype.urlPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)\/?((\?([\w\d_]+=[\w\d_\+]+)(&[\w\d_]+=[\w\d_\+]+)*)?(#[\w\d_]+)?)|((#[\w\d_]+)?(\?([\w\d_]+=[\w\d_\+]+)(&[\w\d_]+=[\w\d_\+]+)*)?)$/i ;
+Window.prototype.urlPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)\/?((\?([\w\d_]+=[\w\d_\+]*)(&[\w\d_]+=[\w\d_\+]*)*)?(#.*)?)|((#.*)?(\?([\w\d_]+=[\w\d_\+]*)(&[\w\d_]+=[\w\d_\+]*)*)?)$/i ;
 
 Window.prototype.isValid = function() {
   return Boolean(this.url && this.urlPattern.test(this.url.trim()));
