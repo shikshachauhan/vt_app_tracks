@@ -1,5 +1,5 @@
 var domain = {};
-domain.urlPattern = /^(https?:\/\/)?(www.)?([\w\d][\w\.\d-_]*\.)?([\w\d-]+\.[\w]+)(\/[\w\d-_\.]+)*(\?([\w\d_]+=[\w\d_\+]+)(&[\w\d_]+=[\w\d_\+]+)*)?(#[\w\d_]+)?$/i ;
+domain.urlPattern = /^(https?:\/\/)?(www.)?([\w\d][\w\.\d-_]*\.)?([\w\d-]+\.[\w]+)(\/[\w\d-_\.]+)*\/?((\?([\w\d_]+=[\w\d_\+]*)(&[\w\d_]+=[\w\d_\+]*)*)?(#.*)?)|((#.*)?(\?([\w\d_]+=[\w\d_\+]*)(&[\w\d_]+=[\w\d_\+]*)*)?)$/i ;
 
 domain.isValid = function(url) {
   return Boolean(url && domain.urlPattern.test(url.trim()));
