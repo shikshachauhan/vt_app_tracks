@@ -1,16 +1,16 @@
 var domain = {};
-domain.urlPattern = /^(https?:\/\/)?(www.)?([\w\d][\w\.\d-_]*\.)?([\w\d-]+\.[\w]+)(\/[\w\d-_\.]+)*\/?((\?([\w\d_]+=[\w\d_\+]*)(&[\w\d_]+=[\w\d_\+]*)*)?(#.*)?)|((#.*)?(\?([\w\d_]+=[\w\d_\+]*)(&[\w\d_]+=[\w\d_\+]*)*)?)$/i ;
+domain.urlPattern = /^(https?:\/\/)?([\w\d][\w\.\d-_]*\.)?([\w\d-]+\.[\w]+)(\/[\w\d-_\.]+)*\/?((\?([\w\d_]+=[\w\d_\+]*)(&[\w\d_]+=[\w\d_\+]*)*)?(#.*)?)|((#.*)?(\?([\w\d_]+=[\w\d_\+]*)(&[\w\d_]+=[\w\d_\+]*)*)?)$/i ;
 
 domain.isValid = function(url) {
   return Boolean(url && domain.urlPattern.test(url.trim()));
 }
 domain.displayDetails = function() {
   var urlDetails;
-  if(RegExp.$3) {
-    urlDetails = 'Domain: ' + RegExp.$4 + '\nSubdomain: ' +
-      RegExp.$3.substring(0, RegExp.$3.length - 1);
+  if(RegExp.$2) {
+    urlDetails = 'Domain: ' + RegExp.$3 + '\nSubdomain: ' +
+      RegExp.$2.substring(0, RegExp.$2.length - 1);
   } else {
-    urlDetails = 'Domain: '+ RegExp.$4 ;
+    urlDetails = 'Domain: ' + RegExp.$3 ;
   }
   alert(urlDetails);
 }
