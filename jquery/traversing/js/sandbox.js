@@ -7,7 +7,7 @@ $(function() {
 
   //Select the search input text box, then traverse up to the form and add a class to the form.
   $('input[name="q"]')
-    .parent()
+    .parents('#search')
       .addClass('search_form');
 
   //Select the list item inside #myList that has a class of "current" 
@@ -19,10 +19,9 @@ $(function() {
 
   //Select the select element inside #specials; traverse your way to the submit button.
   $('#specials select')
-    .parent()
-      .next()
-        .children()
-          .val('Go Now');
+    .parents('form')
+      .find('[type="submit"]')
+        .val('Go Now');
 
   //Select the first list item in the #slideshow element; 
   //add the class "current" to it, and then add a class of "disabled" to its sibling elements.
