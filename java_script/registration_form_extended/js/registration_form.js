@@ -12,7 +12,8 @@ RegistrationForm.prototype.urlPattern =
   /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/i ;
 RegistrationForm.prototype.checkEmpty = function(event) {
   event.preventDefault();
-  for(var i in this.textFields) {
+  var length = this.textFields.length;
+  for(var i = 0; i < length; i++) {
     if(!this.textFields[i].value) {
       alert(document.getElementsByClassName
         (this.textFields[i].dataset.reference)[0].innerText + ' can not be empty.');
