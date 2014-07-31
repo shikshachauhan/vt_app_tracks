@@ -32,20 +32,18 @@ CheckboxGroup.prototype.uncheckAll = function() {
   }
   this.checkedBoxes = [];
 }
+CheckboxGroup.prototype.manageCheckBoxGroup = function(event) {
+  this.addChecked(event);
+  this.checkOverflow(event);
+  this.removeChecked(event);
+}
 CheckboxGroup.prototype.bindEvents = function() {
-  var lenght = this.checkBoxes.length,
+  var groupSize = this.checkBoxes.length,
       checkboxGroup = this;
-  for(var i = 0; i < lenght; i++) {
+  for(var i = 0; i < groupSize; i++) {
     this.checkBoxes[i].addEventListener('change', function(event) {
-      checkboxGroup.addChecked(event);
+      checkboxGroup.manageCheckBoxGroup(event);
     });
-    this.checkBoxes[i].addEventListener('change', function(event) {
-      checkboxGroup.checkOverflow(event);
-    });
-    this.checkBoxes[i].addEventListener('change', function(event) {
-      checkboxGroup.removeChecked(event);
-    });
-
   }
   this.none.addEventListener('change', function() {
     checkboxGroup.uncheckAll();
