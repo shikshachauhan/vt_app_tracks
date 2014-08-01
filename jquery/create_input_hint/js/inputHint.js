@@ -1,7 +1,13 @@
 function InputHint(elements) {
   this.searchBox = elements.searchBox;
-  this.label = elements.label;
-  this.hintText = elements.label.text();
+  this.hintText = this.removeLabel(elements.label);
+}
+
+//Remove the label element
+InputHint.prototype.removeLabel = function(label) {
+  return label
+    .remove()
+    .text();
 }
 
 InputHint.prototype.setHint = function() {
@@ -36,10 +42,6 @@ InputHint.prototype.init = function() {
   //Set the value of the search input to the text of the label element
   //Add a class of "hint" to the search input
   this.setHint();
-
-  //Remove the label element
-  this.label.remove();
-
   this.bindEvents();
 }
 $(function() {
