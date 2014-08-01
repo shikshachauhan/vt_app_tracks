@@ -1,41 +1,51 @@
 function TabbedNavigation(modules) {
   this.modules = modules;
 }
+
 TabbedNavigation.prototype.hideAll = function() {
   this.modules.hide();
 }
+
 TabbedNavigation.prototype.createUnorderedList = function() {
   this.moduleList = $('<ul>');
   this.modules.first().before(this.moduleList);
 }
+
 TabbedNavigation.prototype.createListItems = function() {
   var _this = this;
-  this.modules.each(function() {
+  this.modules.each(function(index) {
     _this.moduleList.append(
       $('<li>').text(
-          $(this).find('h2').text()
-        )
+        $(this).find('h2').text()
       )
-  })
+    );
+  });
+  this.listElements = this.moduleList.find('li');
 }
+
+TabbedNavigation.prototype.showClickedTab = function(event) {
+  var $target = $(event.target);
+  this.modules
+    .hide()
+    .filter(function() {
+      return ($(this).find('h2').text() == $target.text())
+    }).show();
+
+  this.listElements
+    .removeClass('current');
+
+  $target.addClass('current');
+}
+
 TabbedNavigation.prototype.bindEvents = function() {
   var _this = this;
-  this.moduleList.find('li').on('click', function() {
-    _this.modules
-      .hide()
-      .eq($(this).index())
-        .show();
-
-    _this.moduleList
-      .find('li')
-        .removeClass('current');
-
-    $(this).addClass('current');
-  })
+  this.listElements.on('click', function(event) {
+    _this.showClickedTab(event);
+  });
 }
 TabbedNavigation.prototype.showFirstTab = function() {
-  this.modules.eq(0).show();
-  this.moduleList.find('li').eq(0).addClass('current');
+  this.modules.first().show();
+  this.listElements.first().addClass('current');
 }
 $(function() {
   tabbedNavigation = new TabbedNavigation($('.module'));
@@ -45,7 +55,6 @@ $(function() {
 
   //Create an unordered list element before the first module.
   tabbedNavigation.createUnorderedList();
-  
 
   //Iterate over the modules using $.fn.each. For each module,
   // use the text of the h2 element as the text for a list item
