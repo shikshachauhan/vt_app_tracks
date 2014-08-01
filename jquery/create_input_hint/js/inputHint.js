@@ -23,6 +23,12 @@ InputHint.prototype.removeHint = function() {
   }
 }
 
+InputHint.prototype.restoreHint = function() {
+  if(!this.searchBox.val().trim()) {
+    this.setHint();
+  }
+}
+
 InputHint.prototype.bindEvents = function() {
   //Bind a focus event to the search input that removes the hint text and the "hint" class
 
@@ -32,10 +38,8 @@ InputHint.prototype.bindEvents = function() {
   this.searchBox.on('focus', function() {
     _this.removeHint();
   }).on('blur', function() {
-    if(!_this.searchBox.val().trim()) {
-      _this.setHint();
-    }
-  });
+      _this.restoreHint();
+    });
 }
 
 InputHint.prototype.init = function() {
