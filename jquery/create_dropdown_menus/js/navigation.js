@@ -3,7 +3,7 @@
 *Exiting an item should hide any submenu items.*/
 
 function DropdownMenu(elements) {
-  this.mainList = elements.mainList;
+  this.listElements = elements.listElements;
 }
 
 DropdownMenu.prototype.showSubMenu = function() {
@@ -19,12 +19,12 @@ DropdownMenu.prototype.hideSubMenu = function() {
 }
 
 DropdownMenu.prototype.init = function() {
-  this.mainList.hover(this.showSubMenu, this.hideSubMenu);
+  this.listElements.hover(this.showSubMenu, this.hideSubMenu);
 }
 
 $(function() {
   var menuElements = {
-    mainList: $('#nav li')
+    listElements: $('#nav li')
   };
   dropdownMenu = new DropdownMenu(menuElements);
   dropdownMenu.init();
