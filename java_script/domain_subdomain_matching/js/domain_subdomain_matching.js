@@ -1,33 +1,37 @@
-var domain = {};
-domain.urlPattern = /^(https?:\/\/)?([\w\d][\w\.\d-_]*\.)?([\w\d-]+\.[\w]+)(\/[\w\d-_\.]+)*\/?((\?([\w\d_]+=[\w\d_\+]*)(&[\w\d_]+=[\w\d_\+]*)*)?(#.*)?)|((#.*)?(\?([\w\d_]+=[\w\d_\+]*)(&[\w\d_]+=[\w\d_\+]*)*)?)$/i ;
+var Domain = {};
+Domain.urlPattern = /^(https?:\/\/)?([\w\d][\w\.\d-_]*\.)?([\w\d-]+)\.((\w\w\w)|(\w\w\.\w\w))(\/[\w\d-_\.]+)*\/?((\?([\w\d_]+=[\w\d_\+]*)(&[\w\d_]+=[\w\d_\+]*)*)?(#.*)?)|((#.*)?(\?([\w\d_]+=[\w\d_\+]*)(&[\w\d_]+=[\w\d_\+]*)*)?)$/i ;
 
-domain.isValid = function(url) {
-  return Boolean(url && domain.urlPattern.test(url.trim()));
+Domain.isValid = function(url) {
+  return Boolean(url && Domain.urlPattern.test(url.trim()));
 }
-domain.displayDetails = function() {
+
+Domain.displayDetails = function() {
   var urlDetails;
   if(RegExp.$2) {
-    urlDetails = 'Domain: ' + RegExp.$3 + '\nSubdomain: ' +
+    urlDetails = 'Domain: ' + RegExp.$3 + '.' + RegExp.$4 + '\nSubDomain: ' +
       RegExp.$2.substring(0, RegExp.$2.length - 1);
   } else {
-    urlDetails = 'Domain: ' + RegExp.$3 ;
+    urlDetails = 'Domain: ' + RegExp.$3 + '.' + RegExp.$4 ;
   }
   alert(urlDetails);
 }
-domain.getDetails = function() {
+
+Domain.getDetails = function() {
   var url = document.getElementById('url').value;
-  if(domain.isValid(url)) {
-    domain.displayDetails();
+  if(Domain.isValid(url)) {
+    Domain.displayDetails();
   } else {
     alert('invalid input URL');
   }
 }
-domain.bindEvents = function() {
-  document.forms[0].addEventListener('submit', function(event){
+
+Domain.bindEvents = function() {
+  document.forms[0].addEventListener('submit', function(event) {
     event.preventDefault();
-    domain.getDetails();
+    Domain.getDetails();
   });
 }
+
 window.onload = function() {
-  domain.bindEvents();
+  Domain.bindEvents();
 }
