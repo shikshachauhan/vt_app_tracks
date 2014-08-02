@@ -14,10 +14,11 @@ TabbedNavigation.prototype.createUnorderedList = function() {
 TabbedNavigation.prototype.createListItems = function() {
   var _this = this;
   this.modules.each(function(index) {
+    var $this = $(this);
     _this.moduleList.append(
       $('<li>').text(
-        $(this).find('h2').text()
-      )
+        $this.find('h2').text()
+      ).data('module', $this)
     );
   });
   this.listElements = this.moduleList.find('li');
@@ -25,11 +26,10 @@ TabbedNavigation.prototype.createListItems = function() {
 
 TabbedNavigation.prototype.showClickedTab = function(event) {
   var $target = $(event.target);
-  this.modules
-    .hide()
-    .filter(function() {
-      return ($(this).find('h2').text() == $target.text())
-    }).show();
+  this.modules.hide();
+  $target
+    .data('module')
+      .show();
 
   this.listElements
     .removeClass('current');
@@ -43,10 +43,12 @@ TabbedNavigation.prototype.bindEvents = function() {
     _this.showClickedTab(event);
   });
 }
+
 TabbedNavigation.prototype.showFirstTab = function() {
   this.modules.first().show();
   this.listElements.first().addClass('current');
 }
+
 $(function() {
   tabbedNavigation = new TabbedNavigation($('.module'));
 
