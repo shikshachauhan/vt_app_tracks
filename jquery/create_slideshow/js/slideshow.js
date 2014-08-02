@@ -13,29 +13,37 @@ function SlideShow(element) {
   this.slidesGroup = element.slidesGroup;
 }
 
-SlideShow.prototype.displaySlide = function(index) {
+SlideShow.prototype.displaySlide = function(index, groupSize) {
   this.slidesGroup
     .eq(index)
       .fadeIn(3000)
       .fadeOut(3000);
+  this.navigationArea.text('Showing ' + (index + 1) + ' out of ' + groupSize);
 };
 
 SlideShow.prototype.runSlideShow = function() {
+
   var _this = this,
       index = 1,
-      groupSize = _this.slidesGroup.length;
-  this.displaySlide(0);
-  setInterval(function() { 
-    _this.displaySlide(index);
+      groupSize = this.slidesGroup.length;
+
+  this.displaySlide(0, groupSize);
+  setInterval(function() {
+    _this.displaySlide(index, groupSize);
     index++;
+
+    //Check if it is the end of the list..
     if(index == groupSize) {
       index = 0;
     }
   } ,6000);
+
 };
 
 SlideShow.prototype.init = function() {
   $('body').prepend(this.slidesGroup);
+  this.navigationArea = $('<div>');
+  this.slidesGroup.after(this.navigationArea);
   this.slidesGroup.hide();
   this.runSlideShow();
 };
