@@ -2,30 +2,34 @@
 *
 *Clicking on another headline should slide down its excerpt paragraph,
 *and slide up any other currently showing excerpt paragraphs.*/
-function InteractiveBlog(elements) {
-  this.blogs = elements.blogs;
-  this.currentlyDown = elements.blogs.find('p.excerpt').first();
+function AddInteractivity(htmlElements) {
+  this.elements = htmlElements.elements;
+  this.slidedDownElement = htmlElements.elements.find('p.excerpt').first();
 }
 
-InteractiveBlog.prototype.showExcerpt = function(event) {
+AddInteractivity.prototype.slideDownElement = function(event) {
   event.preventDefault();
-  this.currentlyDown.slideUp();
-  this.currentlyDown = $(event.currentTarget)
+
+  //slideUp currently slided down Element
+  this.slidedDownElement.slideUp();
+
+  //change value of currently slided down Element and slide it down
+  this.slidedDownElement = $(event.currentTarget)
     .find('p.excerpt')
       .slideDown();
 }
 
-InteractiveBlog.prototype.bindEvents = function() {
+AddInteractivity.prototype.bindEvents = function() {
   var _this = this;
-  this.blogs.on('click', function(event) {
-    _this.showExcerpt(event);
+  this.elements.on('click', function(event) {
+    _this.slideDownElement(event);
   });
 }
 
 $(function() {
   var blogElements = {
-    blogs: $('#blog li')
+    elements: $('#blog li')
   };
-  var interactiveBlog = new InteractiveBlog(blogElements);
-  interactiveBlog.bindEvents();
+  var addBlogInteractivity = new AddInteractivity(blogElements);
+  addBlogInteractivity.bindEvents();
 });
