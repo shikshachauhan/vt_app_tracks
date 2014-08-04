@@ -12,14 +12,18 @@
 var SlideShow = function(element) {
   this.slidesGroup = element.slidesGroup;
   this.slides = element.slidesGroup.find('li');
-  this.groupSize = this.slides.length
+  this.groupSize = this.slides.length;
+  this.fadeInTime = element.fadeInTime;
+  this.fadeOutTime = element.fadeOutTime;
+  this.interval = this.fadeInTime + this.fadeOutTime;
 }
 
 SlideShow.prototype.displaySlide = function(index) {
-  this.slides
+  var _this = this;
+  _this.slides
     .eq(index)
-      .fadeIn(3000)
-      .fadeOut(3000);
+      .fadeIn(_this.fadeInTime)
+      .fadeOut(_this.fadeOutTime);
   this.navigationArea.text('Showing ' + (index + 1) + ' out of ' + this.groupSize);
 };
 
@@ -37,7 +41,7 @@ SlideShow.prototype.runSlideShow = function() {
     if(index == _this.groupSize) {
       index = 0;
     }
-  } ,6000);
+  } ,_this.interval);
 
 };
 
@@ -54,7 +58,9 @@ SlideShow.prototype.init = function() {
 
 $(function() {
   var slideShowElements = {
-    slidesGroup: $('#slideshow')
+    slidesGroup: $('#slideshow'),
+    fadeInTime: 3000,
+    fadeOutTime: 3000
   };
 
   var slideShow = new SlideShow(slideShowElements);
