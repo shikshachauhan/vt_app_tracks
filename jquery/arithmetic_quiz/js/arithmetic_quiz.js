@@ -88,7 +88,7 @@ $(function() {
     result: $('input[name="result"]'),
     score: $('#score'),
     next: $('#next-button'),
-    totalQuestions: 2
+    totalQuestions: 20
   };
   var arithmeticQuiz = new ArithmeticQuiz(quizElements);
   arithmeticQuiz.init();
