@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>To Do List</title>
+    <link rel="stylesheet" type="text/css" href="css/to_do_list.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
+    </script>
+    <script src="js/to_do_list.js">
+    </script>
+    <script src="js/index.js">
+    </script>
+    <script src="js/user.js">
+    </script>
+    <script src="js/manage_todo_list.js">
+    </script>
+  </head>
+  <body>
+    <div id="main-division">
+      <div id="forms_division">
+        <form id="to-do-form">
+          <label for="task">To Do</label>
+          <input type="text" name="task" id="task">
+          <select id="users"></select>
+          <input type="submit" value="Save">
+        </form>
+        <span id="buttons">
+          <button id="create-to-do">
+            Create To Do
+          </button>
+          <button id="create-user">
+            Create User
+          </button>
+        </span>
+        <br/>
+        <br/>
+        <form id="create-user-form">
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name">
+          <input type="submit" value="Add">
+        </form>
+      </div>
+      <hr/>
+      <div id="list_division">
+        <div id="to-do-list">
+          <strong>
+            To Do List
+          </strong>
+        </div>
+        <div id="user-list">
+          <strong>
+            User List
+          </strong>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
