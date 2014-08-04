@@ -9,31 +9,32 @@
 // shows how many images there are and which image you're currently viewing. 
 // (Hint: $.fn.prevAll will come in handy for this.)
 
-function SlideShow(element) {
+var SlideShow = function(element) {
   this.slidesGroup = element.slidesGroup;
+  this.slides = element.slidesGroup.find('li');
+  this.groupSize = this.slides.length
 }
 
-SlideShow.prototype.displaySlide = function(index, groupSize) {
-  this.slidesGroup
+SlideShow.prototype.displaySlide = function(index) {
+  this.slides
     .eq(index)
       .fadeIn(3000)
       .fadeOut(3000);
-  this.navigationArea.text('Showing ' + (index + 1) + ' out of ' + groupSize);
+  this.navigationArea.text('Showing ' + (index + 1) + ' out of ' + this.groupSize);
 };
 
 SlideShow.prototype.runSlideShow = function() {
 
   var _this = this,
-      index = 1,
-      groupSize = this.slidesGroup.length;
+      index = 1;
 
-  this.displaySlide(0, groupSize);
+  _this.displaySlide(0);
   setInterval(function() {
-    _this.displaySlide(index, groupSize);
+    _this.displaySlide(index);
     index++;
 
     //Check if it is the end of the list..
-    if(index == groupSize) {
+    if(index == _this.groupSize) {
       index = 0;
     }
   } ,6000);
@@ -42,15 +43,18 @@ SlideShow.prototype.runSlideShow = function() {
 
 SlideShow.prototype.init = function() {
   $('body').prepend(this.slidesGroup);
+  this.slidesGroup.wrap($('<div>', {
+    height: '400px'
+  }));
   this.navigationArea = $('<div>');
-  this.slidesGroup.after(this.navigationArea);
-  this.slidesGroup.hide();
+  this.slides.after(this.navigationArea);
+  this.slides.hide();
   this.runSlideShow();
 };
 
 $(function() {
   var slideShowElements = {
-    slidesGroup: $('#slideshow li')
+    slidesGroup: $('#slideshow')
   };
 
   var slideShow = new SlideShow(slideShowElements);
