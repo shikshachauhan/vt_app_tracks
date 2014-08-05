@@ -16,13 +16,13 @@ DisplayDayInfo.prototype.getDayInfo = function(event) {
 };
 
 DisplayDayInfo.prototype.displayDayInfo = function(info) {
-  this.targetDivision.html(function() {
-    var temp = '';
-    $.each(info, function(key, val) {
-      temp += '<div>' + key + ' : ' + val + '</div>';
-    });
-    return temp;
-  });
+  this.targetDivision.empty();
+  this.targetDivision.css('color', info['color'])
+    .append('<strong>' + info['title'] + '</strong><br/>')
+    .append($('<img>', {
+      src: info['image']
+    }))
+    .append('<p>' + info['text'] + '</p>');
 };
 
 DisplayDayInfo.prototype.bindEvents = function() {
