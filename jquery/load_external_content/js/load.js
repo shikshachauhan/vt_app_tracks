@@ -1,32 +1,35 @@
-// Create a target div after the headline for each blog post and store 
-// a reference to it on the headline element using $.fn.data.
+/*Create a target div after the headline for each blog post and store 
+*a reference to it on the headline element using $.fn.data.
+*
+*Bind a click event to the headline that will use the $.fn.load method 
+*to load the appropriate content from /exercises/data/blog.html into the target div.*/
 
-// Bind a click event to the headline that will use the $.fn.load method 
-// to load the appropriate content from /exercises/data/blog.html into the target div.
-
-// Don't forget to prevent the default action of the click event.
-
-function LoadContent(elements) {
-  this.headLines = elements.headLines;
+function LoadContent(headLines) {
+  this.headLines = headLines;
 }
 
 LoadContent.prototype.insertDivisions = function() {
-  this.headLines.each(function() {
-    var division = $('<div>');
+  this.headLines.each(function(index) {
+    var division = $('<div>', {
+      id: 'division' + index
+    });
+    var divisionId = '#division' + index;
     $(this)
       .after(division)
-      .data('division', division);
+      .data('division', $(divisionId));
   });
 }
 
 LoadContent.prototype.loadData = function(event) {
   event.preventDefault();
 
-  //get the location hash of url
-  var locationHash = $(event.currentTarget)
+  //get url of data
+  var url = $(event.currentTarget)
     .find('a')
-      .attr('href')
-        .match(/.*(#.*)/)[1];
+      .attr('href');
+
+  //get the location hash of url
+  var locationHash = url.match(/.*(#.*)/)[1];
 
   $(event.currentTarget)
     .data('division')
@@ -36,7 +39,7 @@ LoadContent.prototype.loadData = function(event) {
             alert('Error: '+ xhr.status +': '+ xhr.statusText);
           }
         }
-  );
+      );
 }
 
 LoadContent.prototype.bindEvents = function() {
@@ -52,9 +55,6 @@ LoadContent.prototype.init = function() {
 }
 
 $(function() {
-  var blogElements = {
-    headLines: $('#blog h3')
-  };
-  var loadBlogContent = new LoadContent(blogElements);
+  var loadBlogContent = new LoadContent($('#blog h3'));
   loadBlogContent.init();
 });
