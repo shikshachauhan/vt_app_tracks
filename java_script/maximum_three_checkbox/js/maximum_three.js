@@ -9,22 +9,23 @@ CheckboxGroup.prototype.alertMessage = function() {
     ' and ' + this.checkedBoxes[2].value);
 }
 CheckboxGroup.prototype.addChecked = function(event) {
-  if(event.target.checked) {
-    this.none.checked = false;
-    this.checkedBoxes.push(event.target);
+  this.none.checked = false;
+  this.checkedBoxes.push(event.target);
+  if(this.checkOverflow(event)) {
+    this.removeChecked(event)
   }
 }
 CheckboxGroup.prototype.checkOverflow = function(event) {
   if(this.checkedBoxes.length == 4) {
     event.target.checked = false;
     this.alertMessage();
+    return true;
   }
+  return false;
 }
 CheckboxGroup.prototype.removeChecked = function(event) {
-  if(!event.target.checked) {
-    var index = this.checkedBoxes.indexOf(event.target);
-    this.checkedBoxes.splice(index, 1);
-  }
+  var index = this.checkedBoxes.indexOf(event.target);
+  this.checkedBoxes.splice(index, 1);
 }
 CheckboxGroup.prototype.uncheckAll = function() {
   for(var i in this.checkedBoxes) {
@@ -33,9 +34,12 @@ CheckboxGroup.prototype.uncheckAll = function() {
   this.checkedBoxes = [];
 }
 CheckboxGroup.prototype.manageCheckBoxGroup = function(event) {
-  this.addChecked(event);
-  this.checkOverflow(event);
-  this.removeChecked(event);
+  if(event.target.checked) {
+    this.addChecked(event);
+  }
+  else {
+    this.removeChecked(event);
+  }
 }
 CheckboxGroup.prototype.bindEvents = function() {
   var groupSize = this.checkBoxes.length,
