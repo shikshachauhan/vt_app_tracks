@@ -36,7 +36,7 @@ LoadContent.prototype.loadData = function(event) {
       .load('data/blog.html ' + locationHash,
         function(responseTxt, statusTxt, xhr) {
           if(statusTxt == 'error') {
-            alert('Error: '+ xhr.status +': '+ xhr.statusText);
+            alert('Error: ' + xhr.status + ': ' + xhr.statusText);
           }
         }
       );
