@@ -1,41 +1,45 @@
-function DisplayDayInfo(htmlElements) {
-  // the particular day is retrieved from this form
-  this.form = htmlElements.form;
-  //this is where day related data is filled
+function RemoteJson(form) {
+  // the particular RemoteJson is retrieved from this form
+  this.form = form;
+  //this is where RemoteJson related data is filled
   this.targetDivision = $('<div>');
 }
 
-DisplayDayInfo.prototype.getDayInfo = function(event) {
+RemoteJson.prototype.load = function() {
   var _this = this;
   $.getJSON('data/specials.json', {
     cache: true,
     dataType: 'json',
-  }, function(data) {
-    _this.displayDayInfo(data[$(event.target).val()]);
+  }, function(responseText) {
+    _this.json = responseText;
   });
 };
 
-DisplayDayInfo.prototype.displayDayInfo = function(info) {
-  this.targetDivision.empty();
-  this.targetDivision.css('color', info['color'])
-    .append('<strong>' + info['title'] + '</strong><br/>')
-    .append($('<img>', {
-      src: info['image']
-    }))
-    .append('<p>' + info['text'] + '</p>');
+RemoteJson.prototype.displayJsonHtml = function(selectedElement) {
+  var remoteJsonHtml = this.json[selectedElement.value];
+
+  this.targetDivision.css('color', remoteJsonHtml['color'])
+    .html('<strong>' + remoteJsonHtml['title'] + '</strong><br/>' +
+      '<img src=' + remoteJsonHtml['image'] + '>' + '<p>' + remoteJsonHtml['text'] + '</p>'
+    );
 };
 
-DisplayDayInfo.prototype.bindEvents = function() {
+RemoteJson.prototype.bindEvents = function() {
   var _this = this;
-  this.form.find('select').on('change', function(event) {
-    _this.getDayInfo(event);
-  })
+  _this.form.find('select').on('change', function() {
+    _this.displayJsonHtml(this);
+  });
 };
 
-DisplayDayInfo.prototype.init = function() {
+RemoteJson.prototype.appendTargetDivision = function() {
+  this.form.after(this.targetDivision);
+};
+
+RemoteJson.prototype.init = function() {
 
   // Append a target div after the form that's inside the #specials element
-  this.form.after(this.targetDivision);
+  this.appendTargetDivision();
+  this.load();
 
   // Bind to the change event of the select element; when the user changes the selection,
   // send an Ajax request to /exercises/data/specials.json.
@@ -46,9 +50,6 @@ DisplayDayInfo.prototype.init = function() {
 };
 
 $(function() {
-  var specialElements = {
-    form: $('#specials form')
-  };
-  displayDayInfo = new DisplayDayInfo(specialElements);
-  displayDayInfo.init();
+  var remoteJson = new RemoteJson($('#specials form'));
+  remoteJson.init();
 });
