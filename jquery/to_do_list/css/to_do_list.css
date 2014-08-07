@@ -1,4 +1,4 @@
-#main-division {
+ #main-division {
   width: 1000px;
   margin: 0 auto;
   background-color: #99D6AD;
@@ -28,14 +28,15 @@ form {
 }
 
 #user-list {
-  position: absolute;
-  left: 915px;
+  position: relative;
+  left: 400px;
 }
 
 #to-do-list {
   position: relative;
   left: 250px;
 }
+
 li {
   list-style-type: none;
 }

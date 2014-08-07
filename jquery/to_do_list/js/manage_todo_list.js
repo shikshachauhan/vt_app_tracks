@@ -3,97 +3,138 @@ function ManageToDoList(htmlElements) {
   this.userForm = htmlElements.userForm;
   this.createTodoButton = htmlElements.createTodoButton;
   this.createUserButton = htmlElements.createUserButton;
-  this.userList = htmlElements.userList;
-  this.todoList = htmlElements.todoList;
+  this.userListElement = htmlElements.userList;
+  this.todoListElement = htmlElements.todoList;
   this.task = htmlElements.task;
-  this.userSelect = htmlElements.userSelect;
   this.name = htmlElements.name;
+  this.userSelect = htmlElements.userSelect;
+  this.userList = [];
+  this.todoList = [];
+  this.userNameList = [];
 }
+
+ManageToDoList.prototype.isValid = function(text) {
+  if(text == '' || this.userNameList.indexOf(text) != -1) {
+    return false;
+  }
+  this.userNameList.push(text);
+  return true;
+};
+
+ManageToDoList.prototype.addToUserSelect = function(user) {
+  var selectOption = $('<option>');
+  selectOption.text(user.name).data('user', user);
+  this.userSelect.append(selectOption);
+};
+
+ManageToDoList.prototype.addToUserList = function(user, listItem) {
+  listItem.text(user.display());
+  this.userListElement.append(listItem);
+};
 
 ManageToDoList.prototype.addUser = function(event) {
   event.preventDefault();
   this.userForm.hide();
 
-  var newUser = new User(this.name.val()),
-      newListItem = $('<li>'),
-      newSelectOption = $('<option>');
+  var name = this.name.val().trim();
+  if(this.isValid(name)) {
+    this.createTodoButton.show();
+    var listItem = $('<li>'),
+        user = new User(name, listItem);
+        
 
-  newListItem.text(newUser.to_s());
-  newSelectOption.text(newUser.name)
-    .data('list', newListItem)
-    .data('user', newUser);
+    this.addToUserSelect(user);
+    this.addToUserList(user, listItem);
+  
+    //store user instance
+    this.userList.push(user);
+  }
+};
 
-  this.userList.append(newListItem);
-  this.userSelect.append(newSelectOption);
+ManageToDoList.prototype.addCheckBox = function(newTodo, selectedUser) {
+  var newTodoCheckBox = $('<input>', {
+      type: 'checkbox'
+    }),
+      newLabel = $('<label>');
+
+  newLabel.text(newTodo.display());
+  newTodoCheckBox.data('label', newLabel)
+      .data('user', selectedUser)
+      .data('todo', newTodo);
+
+  this.todoListElement.append($('<br/>'), newTodoCheckBox, newLabel);
+};
+
+ManageToDoList.prototype.updateUserInfo = function(selectedUser, newTodo) {
+  selectedUser.todoList.push(newTodo);
+  selectedUser.listElement.text(selectedUser.display());
 };
 
 ManageToDoList.prototype.addTodo = function(event) {
   event.preventDefault();
   this.todoForm.hide();
 
-  var taskString = this.task.val(),
-      newTodo = new ToDo(taskString),
-      newTodoCheckBox = $('<input>', {
-        type: 'checkbox'
-      }),
-      selectedOption = this.userSelect.find('option:selected'),
-      selectedUser = selectedOption.data('user'),
-      newLabel = $('<label>');
-  newLabel.text(taskString + ' assigned by(' + selectedUser.name + ')')
+  var taskString = this.task.val().trim();
+  if(taskString != '') {
+    var selectedOption = this.userSelect.find('option:selected'),
+        selectedUser = selectedOption.data('user'),
+        newTodo = new Todo(taskString, selectedUser);
+  
+    this.addCheckBox(newTodo, selectedUser);
+    this.updateUserInfo(selectedUser, newTodo);
 
-  selectedUser.todoCount++;
-  selectedOption
-    .data('list')
-      .text(selectedUser.to_s());
-
-  newTodoCheckBox.data('label', newLabel)
-    .data('user-text', selectedOption.data('list'))
-    .data('user', selectedUser);
-  this.todoList.append($('<br/>'), newTodoCheckBox, newLabel);
+    //store instance of new Todo
+    this.todoList.push(newTodo);
+  }
 };
 
-ManageToDoList.prototype.deleteTask = function() {
+ManageToDoList.prototype.completeTask = function(event) {
   var $target = $(event.target),
       user = $target.data('user');
-  if(event.target.checked == true) {
-    $target
-      .data('label')
-        .wrap('<strike>');
-    user.todoCount--;
+  if($target.prop('checked')) {
+    $target.data('label').wrap('<strike>');
+    $target.data('todo').complete = true;
   } else {
-    user.todoCount++;
+    $target.data('todo').complete = false;
   }
-  $target
-    .data('user-text')
-      .text($target.data('user').to_s());
+  user.listElement.text(user.display());
+};
+
+ManageToDoList.prototype.bindUserFormEvents = function() {
+  var _this = this;
+  _this.createUserButton.on('click', function() {
+    _this.userForm.show();
+  });
+  _this.userForm.on('submit', function(event) {
+    _this.addUser(event);
+    _this.name.val('');
+  });
+};
+
+ManageToDoList.prototype.bindTodoFormEvents = function() {
+  var _this = this;
+  _this.createTodoButton.on('click', function() {
+    _this.todoForm.show();
+  });
+  _this.todoForm.on('submit', function(event) {
+    _this.addTodo(event);
+    _this.task.val('');
+  });
 };
 
 ManageToDoList.prototype.bindEvents = function() {
   var _this = this;
-  this.createUserButton.on('click', function() {
-    _this.userForm.show();
-  });
-  this.userForm.on('submit', function(event) {
-    _this.addUser(event);
-    _this.createTodoButton.show();
-    _this.name.val('');
-  });
-  this.createTodoButton.on('click', function() {
-    _this.todoForm.show();
-  });
-  this.todoForm.on('submit', function() {
-    _this.addTodo(event);
-    _this.task.val('');
-  });
-  this.todoList.on('change', function(event) {
-    _this.deleteTask(event);
+  this.bindUserFormEvents();
+  this.bindTodoFormEvents();
+  this.todoListElement.on('change', function(event) {
+    _this.completeTask(event);
   });
 };
+
 ManageToDoList.prototype.init = function() {
   //hide Elements
   this.todoForm.hide();
   this.userForm.hide();
   this.createTodoButton.hide();
-
   this.bindEvents();
 };
