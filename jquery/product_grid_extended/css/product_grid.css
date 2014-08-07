@@ -1,0 +1,14 @@
+img {
+  margin: 2px;
+}
+div {
+  display: inline-block;
+}
+#filters {
+  width: 250px;
+  vertical-align: top;
+}
+
+#grid {
+  width: 1000px;
+}
