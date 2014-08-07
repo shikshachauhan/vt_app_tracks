@@ -8,7 +8,7 @@
 version of jQuery so you may want to use on()*/
 
 function DivisionStack(htmlElements) {
-  this.pushButton = htmlElements.pushButton;
+  this.addButton = htmlElements.addButton;
   this.container = htmlElements.container;
   this.top = 0;
 }
@@ -21,34 +21,38 @@ DivisionStack.prototype.pushDivision = function() {
 };
 
 DivisionStack.prototype.highlightDivision = function(event) {
-  if(event.target != event.currentTarget) {
-    $(event.target).css('background-color', 'yellow');
-  }
+    $(this).css('background-color', 'yellow');
 }
 
 DivisionStack.prototype.popDivision = function(event) {
-  this.top--;
+  this.top --;
   $(event.target).remove();
 }
 
-DivisionStack.prototype.bindEvents = function() {
+DivisionStack.prototype.bindAddButtonEvent = function() {
   var _this = this;
-  this.pushButton.on('click', function() {
+  _this.addButton.on('click', function() {
     _this.pushDivision();
   });
-  this.container.on('click', function(event) {
-    if(Number($(event.target).text()) == _this.top) {
-      _this.popDivision(event);
-    } else {
-      _this.highlightDivision(event);
-    }
+};
+
+DivisionStack.prototype.bindStackEvents = function() {
+  var _this = this;
+  _this.container.on('click', 'div:first', function(event) {
+    _this.popDivision(event);
   });
+  _this.container.on('click', 'div:not(div:first)', _this.highlightDivision);
+};
+
+DivisionStack.prototype.bindEvents = function() {
+  this.bindAddButtonEvent();
+  this.bindStackEvents();
 };
 
 $(function() {
   var divisionElements = {
     container: $('#container'),
-    pushButton: $('#push')
+    addButton: $('#push')
   };
   var divisionStack = new DivisionStack(divisionElements);
   divisionStack.bindEvents();
