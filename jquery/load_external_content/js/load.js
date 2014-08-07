@@ -4,35 +4,31 @@
 *Bind a click event to the headline that will use the $.fn.load method 
 *to load the appropriate content from /exercises/data/blog.html into the target div.*/
 
-function LoadContent(headLines) {
+function Blog(headLines) {
   this.headLines = headLines;
 }
 
-LoadContent.prototype.insertDivisions = function() {
+Blog.prototype.insertDivisions = function() {
   this.headLines.each(function(index) {
-    var division = $('<div>', {
-      id: 'division' + index
-    });
-    var divisionId = '#division' + index;
-    $(this)
-      .after(division)
-      .data('division', $(divisionId));
-  });
+      var division = $('<div>', {
+          id: 'division' + index
+        }
+      ),
+      divisionId = '#division' + index;
+      $(this).after(division).data('division', divisionId);
+    }
+  );
 }
 
-LoadContent.prototype.loadData = function(event) {
-  event.preventDefault();
-
+Blog.prototype.load = function() {
+  var $this = $(this);
   //get url of data
-  var url = $(event.currentTarget)
-    .find('a')
-      .attr('href');
+  var url = $this.find('a').attr('href');
 
   //get the location hash of url
   var locationHash = url.match(/.*(#.*)/)[1];
 
-  $(event.currentTarget)
-    .data('division')
+  $($this.data('division'))
       .load('data/blog.html ' + locationHash,
         function(responseTxt, statusTxt, xhr) {
           if(statusTxt == 'error') {
@@ -42,19 +38,20 @@ LoadContent.prototype.loadData = function(event) {
       );
 }
 
-LoadContent.prototype.bindEvents = function() {
-  var _this = this;
+Blog.prototype.bindEvents = function() {
   this.headLines.on('click', function(event) {
-    _this.loadData(event);
-  });
+      event.preventDefault();
+    }
+  );
+  this.headLines.one('click', this.load);
 }
 
-LoadContent.prototype.init = function() {
+Blog.prototype.init = function() {
   this.insertDivisions();
   this.bindEvents();
 }
 
 $(function() {
-  var loadBlogContent = new LoadContent($('#blog h3'));
-  loadBlogContent.init();
+  var blog = new Blog($('#blog h3'));
+  blog.init();
 });
