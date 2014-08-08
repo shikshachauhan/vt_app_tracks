@@ -12,8 +12,7 @@ Blog.prototype.insertDivisions = function() {
   this.headLines.each(function(index) {
       var division = $('<div>', {
           id: 'division' + index
-        }
-      ),
+        }),
           divisionId = '#division' + index;
       $(this).after(division).data('division', divisionId);
     }
