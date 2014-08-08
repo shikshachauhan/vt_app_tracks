@@ -1,2 +1,0 @@
-class EmptyString < StandardError
-end

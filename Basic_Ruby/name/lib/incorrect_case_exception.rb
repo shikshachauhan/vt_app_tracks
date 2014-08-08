@@ -1,2 +1,0 @@
-class IncorrectCase < StandardError
-end
