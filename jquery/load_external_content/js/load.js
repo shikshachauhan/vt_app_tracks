@@ -14,7 +14,7 @@ Blog.prototype.insertDivisions = function() {
           id: 'division' + index
         }
       ),
-      divisionId = '#division' + index;
+          divisionId = '#division' + index;
       $(this).after(division).data('division', divisionId);
     }
   );
@@ -22,6 +22,7 @@ Blog.prototype.insertDivisions = function() {
 
 Blog.prototype.load = function() {
   var $this = $(this);
+
   //get url of data
   var url = $this.find('a').attr('href');
 
@@ -29,13 +30,13 @@ Blog.prototype.load = function() {
   var locationHash = url.match(/.*(#.*)/)[1];
 
   $($this.data('division'))
-      .load('data/blog.html ' + locationHash,
-        function(responseTxt, statusTxt, xhr) {
-          if(statusTxt == 'error') {
-            alert('Error: ' + xhr.status + ': ' + xhr.statusText);
-          }
+    .load('data/blog.html ' + locationHash,
+      function(responseTxt, statusTxt, xhr) {
+        if(statusTxt == 'error') {
+          alert('Error: ' + xhr.status + ': ' + xhr.statusText);
         }
-      );
+      }
+    );
 }
 
 Blog.prototype.bindEvents = function() {
@@ -52,6 +53,7 @@ Blog.prototype.init = function() {
 }
 
 $(function() {
-  var blog = new Blog($('#blog h3'));
-  blog.init();
-});
+    var blog = new Blog($('#blog h3'));
+    blog.init();
+  }
+);
