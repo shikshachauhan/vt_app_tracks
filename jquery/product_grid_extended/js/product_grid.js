@@ -9,59 +9,143 @@ var ProductGrid = function(htmlElements) {
   this.available = htmlElements.available;
 }
 
+ProductGrid.prototype.createImageElements = function(product) {
+  var newImage = $('<img>', {
+        src: 'images/' + product['url']
+      }),
+      newSpan = $('<span>');
+  newSpan.append(newImage).data('product', product);
+  this.gridContainer.append(newSpan);
+};
+
+ProductGrid.prototype.loadImages = function(data) {
+  var _this = this;
+  $.each(data, function() {
+      _this.createImageElements(this);
+    }
+  );
+  _this.productList = _this.gridContainer.find('span');
+  _this.currentlyVisible = _this.productList;
+};
+
 ProductGrid.prototype.loadData = function() {
   var _this = this;
   $.getJSON('data/product.json', {
-        dataType: 'json'
+        dataType: 'json',
       },
       function(data) {
-        $.each(data, function() {
-            var newImage = $('<img>', {
-              src: 'images/' + this['url']
-            });
-            var newSpan = $('<span>');
-            newSpan.append(newImage)
-              .data('color', this['color'])
-              .data('brand', this['brand'])
-              .data('sold_out', this['sold_out']);
-            _this.gridContainer.append(newSpan);
-          }
-        );
+        _this.loadImages(data);
       }
   );
-  this.productList = this.gridContainer.find('span');
-  this.currentlyVisibleProducts = this.productList;
 };
 
-ProductGrid.prototype.brandFilter = function(event) {
-  this.productList.filter(function() {
-    return (this.data('brand') == $(event).val());
-  }).toggle();
+ProductGrid.prototype.availableBrands = function() {
+  var _this = this;
+  return this.productList.filter(function() {
+      var checkedBrands = _this.brand.filter(':checked'),
+      count = checkedBrands.length;
+      for(var i = 0; i < count; i++) {
+        if(checkedBrands[i].value == $(this).data('product')['brand']) {
+          return true;
+        }
+      }
+      return false;
+    }
+  );
 };
 
-ProductGrid.prototype.colorFilter = function() {
-  this.productList.filter(':visible').filter(function() {
-    return (this.data('color') == $(event).val());
-  }).toggle();
+ProductGrid.prototype.availableColors = function(products) {
+  var _this = this;
+  return products.filter(function() {
+      var checkedColors = _this.color.filter(':checked'),
+      count = checkedColors.length;
+      for(var i = 0; i < count; i++) {
+        if(checkedColors[i].value == $(this).data('product')['color']) {
+          return true;
+        }
+      }
+      return false;
+    }
+  );
 };
 
-ProductGrid.prototype.availableFilter = function(event) {
-  this.productList.filter(':visible').filter(function() {
-    return (this.data('sold_out') == '1');
-  }).toggle();
+ProductGrid.prototype.availableStock = function(products) {
+  if(this.available.filter(':checked').val() == '0') {
+    var products = products.filter(function() {
+        return $(this).data('product')['sold_out'] == '0';
+      }
+    );
+  }
+  return products;
+};
+
+ProductGrid.prototype.filterByBrand = function(event) {
+  var $target = $(event.target);
+  var _this = this;
+
+  var filteredProducts = this.productList.filter(function() {
+      return $target.val() == $(this).data('product')['brand'];
+    }
+  );
+
+  filteredProducts = this.availableColors(filteredProducts);
+  filteredProducts = this.availableStock(filteredProducts);
+  filteredProducts.toggle();
+}
+
+ProductGrid.prototype.filterByColor = function(event) {
+  var _this = this,
+      $target = $(event.target);
+
+  var filteredProducts = this.availableBrands();
+  filteredProducts = filteredProducts.filter(function() {
+      return $target.val() == $(this).data('product')['color'];
+    }
+  );
+
+  filteredProducts = this.availableStock(filteredProducts);
+  filteredProducts.toggle();
+}
+
+ProductGrid.prototype.filterByAvailability = function(event) {
+  var _this = this;
+  var filteredProducts = this.availableBrands();
+  filteredProducts = this.availableColors(filteredProducts);
+  
+  filteredProducts.filter(function() {
+      return $(this).data('product')['sold_out'] == '1';
+    }
+  ).toggle();
+}
+
+ProductGrid.prototype.bindBrandEvent = function() {
+  var _this = this;
+  _this.brand.on('change', function(event) {
+      _this.filterByBrand(event);
+    }
+  );
+};
+
+ProductGrid.prototype.bindColorEvent = function() {
+  var _this = this;
+  _this.color.on('change', function(event) {
+      _this.filterByColor(event);
+    }
+  );
+};
+
+ProductGrid.prototype.bindAvailableEvent = function() {
+  var _this = this;
+  _this.available.on('change', function(event) {
+      _this.filterByAvailability(event);
+    }
+  );
 };
 
 ProductGrid.prototype.bindEvents = function() {
-  var _this = this;
-  _this.brand.on('change', function(event) {
-    _this.brandFilter();
-  });
-  _this.color.on('change', function(event) {
-    _this.colorFilter();
-  });
-  _this.brand.on('change', function(event) {
-    _this.availableFilter();
-  });
+  this.bindBrandEvent();
+  this.bindColorEvent();
+  this.bindAvailableEvent();
 };
 
 ProductGrid.prototype.init = function() {
@@ -78,5 +162,4 @@ $(function() {
   };
   var productGrid = new ProductGrid(htmlElements);
   productGrid.init();
-  console.log($('span'))
 });
